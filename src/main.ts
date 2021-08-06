@@ -1,13 +1,22 @@
-import { createApp } from 'vue'
-import App from './App.vue'
+import { createApp } from 'vue';
+import App from './App.vue';
 
+import Antd from 'ant-design-vue';
 
-import 'virtual:windi.css'
-import 'ant-design-vue/dist/antd.css'
+import 'virtual:windi.css';
+import 'ant-design-vue/dist/antd.css';
+import { router, setupRouter } from './router';
 
+async function boostrap() {
+  const app = createApp(App);
+  app.use(Antd);
 
-const app = createApp(App)
-app.mount('#app', true);
+  setupRouter(app);
 
+  await router.isReady();
 
+  app.mount('#app', true);
+}
 
+// https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/void
+void boostrap();
