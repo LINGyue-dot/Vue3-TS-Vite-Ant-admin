@@ -142,6 +142,71 @@
 
 ### 路由生成侧边栏
 
+整体思路即为：将经过权限过滤的路由表传入 `ant-desgin-vue` 中的 `a-menu`  由 children 来进行不同的渲染即 `a-sub-menu` 再递归或者 `a-menu-item`  直接渲染。
+
+所携带参数配置项目中如下
+
+```ts
+// 路由设置
+// 展开式需要渲染成 a-sub-menu 
+// meta 携带数据
+const dashboard: AppRouterRecordRaw = {
+  path: '/dashboard',
+  name: 'Dashboard',
+  component: LAYOUT,
+  meta: {
+    title: 'DashBoard',
+  },
+  redirect: '/dashboard/analysis',
+  children: [
+    {
+      path: 'analysis',
+      name: 'Analysis',
+      component: () => import('views/dashboard/analysis/index.vue'),
+      meta: {
+        title: '分析台',
+        icon: 'sad',
+      },
+    },
+    {
+      path: 'workbench',
+      name: 'Workbench',
+      component: () => import('views/dashboard/workbench/index.vue'),
+      meta: {
+        title: '工作台',
+        icon: 'sad'
+      }
+    }
+  ],
+};
+
+// 无需展开单 即原本不存在 children 但是为了布局应用所以使得只存在一个 children 
+// 直接使用 a-menu-item 的如下
+const party: AppRouterRecordRaw = {
+  path: '/party',
+  name: 'Party',
+  component: LAYOUT,
+  meta: {
+    title: '派对',
+    icon: 'sad',
+  },
+  redirect: '/party/index',
+  children: [
+    {
+      path: 'index',
+      name: 'PartyPage',
+      component: () => import('views/party/index.vue'),
+      meta: {
+        title: '派对',
+      },
+    }
+  ],
+}
+
+```
+
+
+
 
 
 
@@ -149,8 +214,6 @@
 
 
 ### 动态路由
-
-
 
 https://github.com/vuejs/vue-router-next/issues/471
 
