@@ -1,9 +1,11 @@
-/**
- * @auth: qianlong
- * @github: LINGyue-dot
- * @e-mail: qianlonwork@outlook.com
- * @description: 所有路由文件定义入口
+/*
+ * @Author: qianlong github:https://github.com/LINGyue-dot
+ * @Date: 2021-08-03 22:13:35
+ * @LastEditors: qianlong github:https://github.com/LINGyue-dot
+ * @LastEditTime: 2021-08-15 10:55:18
+ * @Description: 所有路由文件定义入口
  */
+
 import { createRouter, createWebHashHistory, RouteRecordRaw } from "vue-router";
 import { basicRoutes, asyncRoutes } from "./routes";
 import type { App } from "vue";

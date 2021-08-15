@@ -53,12 +53,10 @@ export default defineComponent({
     // TO DO 
     // now cannot work
     const openChange = item => {
-      console.log(item);
     };
 
     onMounted(() => {
       selectedKeys.value = [route.path];
-      console.log(selectedKeys.value);
     });
 
     return {

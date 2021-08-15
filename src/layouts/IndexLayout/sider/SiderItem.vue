@@ -21,7 +21,7 @@
 <script lang="ts">
 import { computed, defineComponent } from 'vue';
 // import { AppRouterRecordRaw } from 'router/types.ts';
-import { renderChildren } from 'utils/router.ts';
+import { renderChildren } from 'utils/router';
 
 export default defineComponent({
   name: 'SiderItem',
@@ -53,7 +53,6 @@ export default defineComponent({
       if (!props.item.children) {
         return getPath.value;
       } else {
-        console.log(getPath.value + '/index')
         return getPath.value + '/index';
       }
     });

@@ -1,3 +1,10 @@
+/*
+ * @Author: qianlong github:https://github.com/LINGyue-dot
+ * @Date: 2021-08-07 13:43:21
+ * @LastEditors: qianlong github:https://github.com/LINGyue-dot
+ * @LastEditTime: 2021-08-15 10:58:56
+ * @Description: 
+ */
 import { Mutation } from "vuex";
 import { StoreModuleType } from "../types";
 

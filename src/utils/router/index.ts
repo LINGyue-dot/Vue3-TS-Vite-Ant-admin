@@ -1,5 +1,12 @@
-import { asyncRoutes } from "../router/routes"
-import { AppRouterRecordRaw } from "../router/types"
+/*
+ * @Author: qianlong github:https://github.com/LINGyue-dot
+ * @Date: 2021-08-06 09:57:48
+ * @LastEditors: qianlong github:https://github.com/LINGyue-dot
+ * @LastEditTime: 2021-08-15 10:57:07
+ * @Description: 
+ */
+import { asyncRoutes } from "../../router/routes"
+import { AppRouterRecordRaw } from "../../router/types"
 
 
 /**
@@ -7,7 +14,7 @@ import { AppRouterRecordRaw } from "../router/types"
  * 此刻暂时处理
  */
 export const getPermissionRoutes = () => {
-  return asyncRoutes
+  return asyncRoutes 
 }
 
 /**

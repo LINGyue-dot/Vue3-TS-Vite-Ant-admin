@@ -1,3 +1,10 @@
+/*
+ * @Author: qianlong github:https://github.com/LINGyue-dot
+ * @Date: 2021-08-07 12:22:41
+ * @LastEditors: qianlong github:https://github.com/LINGyue-dot
+ * @LastEditTime: 2021-08-15 20:11:06
+ * @Description: 
+ */
 import { ModuleTree } from "vuex";
 
 
@@ -8,7 +15,7 @@ export function importAllStore<S>(): ModuleTree<S> {
   const modules: ModuleTree<S> = {}
 
   // 导入 /store/modules/*.ts 下的全部 store
-  const outModules = import.meta.globEager('../store/modules/*.ts')
+  const outModules = import.meta.globEager('../../store/modules/*.ts')
 
   Object.keys(outModules).forEach(key => {
     try {
@@ -20,8 +27,7 @@ export function importAllStore<S>(): ModuleTree<S> {
   })
 
   // 导入 /views 下的所有 store.ts 文件
-
-  const innerModules = import.meta.globEager('../views/**/store.ts')
+  const innerModules = import.meta.globEager('../../views/**/store.ts')
   Object.keys(innerModules).forEach(key => {
     try {
       const { name, ...module } = innerModules[key].default

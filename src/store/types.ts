@@ -9,3 +9,5 @@ export interface StoreModuleType<S> extends Module<S, S> {
   namespaced: boolean;
   name: string;
 }
+
+
