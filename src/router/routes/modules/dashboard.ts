@@ -1,3 +1,11 @@
+/*
+ * @Author: qianlong github:https://github.com/LINGyue-dot
+ * @Date: 2021-08-05 02:48:46
+ * @LastEditors: qianlong github:https://github.com/LINGyue-dot
+ * @LastEditTime: 2021-08-16 15:24:06
+ * @Description: 
+ */
+import { Role } from '../../../store/modules/user';
 import { LAYOUT } from '../../constant';
 import { AppRouterRecordRaw } from '../../types';
 
@@ -7,6 +15,7 @@ const dashboard: AppRouterRecordRaw = {
   component: LAYOUT,
   meta: {
     title: 'DashBoard',
+    roles: [Role.Tourist, Role.Gadmin, Role.Sadmin]
   },
   redirect: '/dashboard/analysis',
   children: [
@@ -17,6 +26,7 @@ const dashboard: AppRouterRecordRaw = {
       meta: {
         title: '分析台',
         icon: 'sad',
+        roles: [Role.Tourist, Role.Gadmin, Role.Sadmin]
       },
     },
     {
@@ -25,7 +35,9 @@ const dashboard: AppRouterRecordRaw = {
       component: () => import('views/dashboard/workbench/index.vue'),
       meta: {
         title: '工作台',
-        icon: 'sad'
+        icon: 'sad',
+        roles: [Role.Tourist, Role.Gadmin, Role.Sadmin]
+
       }
     }
   ],

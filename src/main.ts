@@ -7,14 +7,17 @@ import 'virtual:windi.css';
 import 'ant-design-vue/dist/antd.css';
 import { router, setupRouter } from './router';
 import { setupStore } from './store';
+import { setupRouterGuard } from './router/guard';
 
 async function boostrap() {
   const app = createApp(App);
   app.use(Antd);
 
+  await setupStore(app)
+
   setupRouter(app);
 
-  setupStore(app)
+  setupRouterGuard(router)
 
   await router.isReady();
 

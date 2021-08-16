@@ -2599,6 +2599,11 @@ windicss@^3.1.6:
   resolved "https://registry.nlark.com/windicss/download/windicss-3.1.6.tgz#237f24be8b38f90f451eedda166c46c25227c608"
   integrity sha1-I38kvos4+Q9FHu3aFmxGwlInxgg=
 
+windicss@^3.1.7:
+  version "3.1.7"
+  resolved "https://registry.nlark.com/windicss/download/windicss-3.1.7.tgz#8a3b8a07ed97c2c1354a6e31820d8059da35f724"
+  integrity sha1-ijuKB+2XwsE1Sm4xgg2AWdo19yQ=
+
 with@^7.0.0:
   version "7.0.2"
   resolved "https://registry.npm.taobao.org/with/download/with-7.0.2.tgz#ccee3ad542d25538a7a7a80aad212b9828495bac"

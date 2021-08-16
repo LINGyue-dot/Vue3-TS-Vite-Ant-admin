@@ -2,7 +2,7 @@
  * @Author: qianlong github:https://github.com/LINGyue-dot
  * @Date: 2021-08-15 14:55:48
  * @LastEditors: qianlong github:https://github.com/LINGyue-dot
- * @LastEditTime: 2021-08-15 23:11:55
+ * @LastEditTime: 2021-08-16 23:17:01
  * @Description: Axios 进行 ts 对应配置
  */
 
@@ -121,6 +121,9 @@ export class VAxios {
     return new Promise((resolve, reject) => {
       this.axiosInstance.request<any, AxiosResponse<BaseResponse>>(conf)
         .then((res: AxiosResponse<BaseResponse>) => {
+
+          // !!! todo axios will catch which status code ?
+          console.log('124 --------------------get us')
           if (transformHook && isFuntion(transformHook)) {
             const ret = transformHook(res, opt)
             resolve(ret)
@@ -129,6 +132,7 @@ export class VAxios {
           }
         })
         .catch((e: AxiosError) => {
+          console.log(e)
           if (transformHookCatch && isFuntion(transformHookCatch)) {
             reject(transformHookCatch(e, opt))
           } else {

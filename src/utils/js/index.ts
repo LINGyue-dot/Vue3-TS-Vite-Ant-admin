@@ -31,6 +31,6 @@ export function isFuntion(fn) {
  * @param target 
  * @returns 
  */
-export function deepCopy(target) {
+export function deepCopy<T = any>(target: T): T {
   return JSON.parse(JSON.stringify(target));
 }

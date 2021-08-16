@@ -31,6 +31,6 @@
     "vite": "^2.4.4",
     "vite-plugin-windicss": "^1.2.7",
     "vue-tsc": "^0.2.2",
-    "windicss": "^3.1.6"
+    "windicss": "^3.1.7"
   }
 }

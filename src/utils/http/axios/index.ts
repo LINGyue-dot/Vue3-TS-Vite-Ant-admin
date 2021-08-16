@@ -2,7 +2,7 @@
  * @Author: qianlong github:https://github.com/LINGyue-dot
  * @Date: 2021-08-15 14:50:59
  * @LastEditors: qianlong github:https://github.com/LINGyue-dot
- * @LastEditTime: 2021-08-15 23:31:56
+ * @LastEditTime: 2021-08-16 23:11:37
  * @Description: axios 对其基本配置包括 响应处理 以及拦截器
  */
 
@@ -24,7 +24,7 @@ const transform: AxiosTransform = {
    * @param options 
    */
   transformHook: (res, options) => {
-    return res.data
+    return res.data.result
   },
 
   /**
@@ -41,12 +41,14 @@ const transform: AxiosTransform = {
       case 401: // token 验证失败 退出所有数据并跳转路由 
         // todo ：该文件中使用 vuex
         store.dispatch('user/logout')
-        return
+        break;
       case 501:
-        return
+        break;
       default:
-        return
+        break;
     }
+    console.log('-----------',err,'---------')
+    return err.response?.data
 
   },
 
@@ -80,8 +82,15 @@ const transform: AxiosTransform = {
     return response
   },
 
+  /**
+   * 响应数据失败非 200 拦截器 
+   * @param err 
+   * @returns 
+   */
   handleResponseInterceptorsCatch: (err) => {
+    console.log('handleResponseInterceptorsCatch ',err)
 
+    return err
   }
 }
 

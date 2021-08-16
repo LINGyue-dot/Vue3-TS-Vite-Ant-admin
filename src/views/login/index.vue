@@ -1,8 +1,14 @@
 <template>
-  <div>login</div>
+  <div class="w-screen h-screen flex">
+    <login-form />
+  </div>
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue'
-export default defineComponent({})
+import LoginForm from './LoginForm.vue'
+export default defineComponent({
+  components: { LoginForm },
+
+})
 </script>
 <style scoped></style>

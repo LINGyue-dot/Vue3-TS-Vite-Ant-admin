@@ -2,8 +2,8 @@
  * @Author: qianlong github:https://github.com/LINGyue-dot
  * @Date: 2021-08-14 07:45:00
  * @LastEditors: qianlong github:https://github.com/LINGyue-dot
- * @LastEditTime: 2021-08-16 22:20:24
- * @Description: 
+ * @LastEditTime: 2021-08-16 23:10:13
+ * @Description: 本文件与 user.ts 完全一致，只是用于解决 bug
  */
 
 import { Action, Mutation } from "vuex";
@@ -17,6 +17,7 @@ export enum Role {
   Gadmin, // 普通管理员 （不可以修改其他用户信息）
   Sadmin // 超级管理员
 }
+
 
 export interface UserStateType {
   user_account: string | null;
@@ -92,22 +93,33 @@ const StoreModel: UserStoreType = {
   actions: {
     async fetchCurrent({ state, commit }) {
       const userInfo = await getCurrent()
-
       commit('saveCurrentUser', userInfo)
-
       console.log(state.currentUser)
       return userInfo
-
     },
     fetchMessage({ state, commit }) {
       return
     },
     register({ state, commit }) {
       return
+
     },
     async login({ state, commit }, payload) {
-      console.log('---------')
-      return await login(payload)
+      // return new Promise((resolve,reject)=>{
+      //   login(payload).then(res=>{
+          
+      //   })
+
+      // })
+
+      const res = await login(payload)
+      try {
+        const { token } = res
+        commit('changeToken', token)
+      } catch (e) {
+      }
+      return res
+
     },
     /**
      * logout 
