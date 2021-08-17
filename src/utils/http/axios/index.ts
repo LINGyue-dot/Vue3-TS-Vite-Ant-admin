@@ -2,7 +2,7 @@
  * @Author: qianlong github:https://github.com/LINGyue-dot
  * @Date: 2021-08-15 14:50:59
  * @LastEditors: qianlong github:https://github.com/LINGyue-dot
- * @LastEditTime: 2021-08-16 23:11:37
+ * @LastEditTime: 2021-08-17 13:24:33
  * @Description: axios 对其基本配置包括 响应处理 以及拦截器
  */
 
@@ -28,7 +28,7 @@ const transform: AxiosTransform = {
   },
 
   /**
-   * 响应数据请求失败，主要用于处理非 4xx 5xx 状态码
+   * 响应数据请求失败，主要用于处理非 4xx 5xx 状态码，需要配置 axios
    */
   transformHookCatch: (err, options) => {
     const { showErrorMessage } = options
@@ -47,9 +47,7 @@ const transform: AxiosTransform = {
       default:
         break;
     }
-    console.log('-----------',err,'---------')
     return err.response?.data
-
   },
 
   /**
@@ -70,6 +68,7 @@ const transform: AxiosTransform = {
    */
   configInRequestInterceptorsCatch: (err) => {
     message.error('request header config errror')
+    throw new Error('/src/utils/http/axios/index configInRequestInterceptorsCatch error')
   },
 
 
@@ -84,13 +83,13 @@ const transform: AxiosTransform = {
 
   /**
    * 响应数据失败非 200 拦截器 
+   * 注意此处 应该用 throw 
+   * 如果用 return 那么就会在 then 中被获取，而非 catch
    * @param err 
    * @returns 
    */
   handleResponseInterceptorsCatch: (err) => {
-    console.log('handleResponseInterceptorsCatch ',err)
-
-    return err
+    throw err
   }
 }
 
@@ -105,6 +104,9 @@ function createAxios(opt?: Partial<CreateAxiosOptions>) {
         withToken: true,
         showErrorMessage: false,
         returnNativeResponse: false
+      },
+      validateStatus: function (status) {
+        return status < 400 // rejct only greater than 400 , status 大于 400 时候都会被 catch
       },
       ...opt
     }
