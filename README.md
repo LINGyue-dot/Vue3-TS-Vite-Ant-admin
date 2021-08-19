@@ -1,15 +1,15 @@
 # Vue 3 + Typescript + Vite
 
-
-
-
-
-
-
+项目仍在开发中，业务模块还未嵌入
+功能目前已完成
+* vuex 二次封装
+* vue-router 二次封装
+* axios 二次封装
+* 权限管理
+* URL 状态管理
 
 
 ## 配置
-
 
 
 ### 依赖
@@ -18,18 +18,12 @@
 * Mock : [yapi](https://github.com/YMFE/yapi)
 * CSS : [Windi CSS](https://windicss.org/)
 * router : vue-router
-* 数据状态管理 : vuex + provider/inject
+* 数据状态管理 : vuex
 * UI 组件库 :  [ant-design-vue](https://2x.antdv.com/docs/vue/getting-started-cn)
 
 
 
 * qs
-
-
-
-
-
-
 
 
 
@@ -56,7 +50,7 @@
 
 
 
-## 需求
+## 待总需求
 
 
 
@@ -71,7 +65,6 @@
 * 非对称加密
 * url 状态管理 即登录后跳转
 * 动态路由
-
 * 异常监控图表
 * 评论文章/动态
 * 用户分布地（ ip 获取）
@@ -89,26 +82,13 @@
 * 认证渠道（认证学者或者专家）
 * 消息推送即最新动态
 
-
-
-
-
-
-
 ### 几个用户
 
 * tourist 游客
 * gadmin 普通管理员（不可修改其他用户信息）
 * sadmin 超级管理员（可修改其他用户信息）
 
-
-
-
-
 ## 开发
-
-
-
 
 
 ### 路由界面
@@ -153,14 +133,7 @@
 	}
 }
 ```
-
-
-
 ## 功能
-
-
-
-
 
 ### 路由生成侧边栏
 
@@ -366,9 +339,6 @@ export default StoreModel
 
 
 
-
-
-
 ### ts 封装 axios
 
 
@@ -378,58 +348,10 @@ export default StoreModel
 本项目中主要有五个函数
 
 
-
 ![image-20210815165639283](http://120.27.242.14:9900/uploads/upload_757313415728a1844f3b750a364193a0.png)
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-### 面包屑
-
-
-
-### 多 tab 
-
-
-
-### Icon 图标使用
-
-
-
-
-
-### 路由重定向作用
-
-
-
-
-
-
-
-### 类型系统
-
-
-
-
-
-
-
-### Loading 状态
-
-
-
-## temp
 
 
 

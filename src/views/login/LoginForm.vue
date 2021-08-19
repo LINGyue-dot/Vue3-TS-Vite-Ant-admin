@@ -20,6 +20,7 @@
 </template>
 <script lang="ts">
 import { defineComponent, reactive } from 'vue';
+import { useRouter } from 'vue-router';
 import { useStore } from 'vuex';
 import { UserStateType } from '../../store/modules/user';
 export default defineComponent({
@@ -27,6 +28,8 @@ export default defineComponent({
 
   setup () {
     const store = useStore<{ user: UserStateType }>();
+
+    const router =useRouter()
 
     const formData = reactive({
       user_account: '',
@@ -42,12 +45,11 @@ export default defineComponent({
 
     const login = async () => {
       try {
-        const re = await store.dispatch('user/login', formData);
-        console.log(re);
+        await store.dispatch('user/login', formData);
+        router.replace('/dashboard/analysis')
       } catch (e) {
         console.log('--------')
       }
-
     };
 
     return {

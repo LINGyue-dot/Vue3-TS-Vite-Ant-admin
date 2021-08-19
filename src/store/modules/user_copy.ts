@@ -2,7 +2,7 @@
  * @Author: qianlong github:https://github.com/LINGyue-dot
  * @Date: 2021-08-14 07:45:00
  * @LastEditors: qianlong github:https://github.com/LINGyue-dot
- * @LastEditTime: 2021-08-16 23:10:13
+ * @LastEditTime: 2021-08-17 17:57:12
  * @Description: 本文件与 user.ts 完全一致，只是用于解决 bug
  */
 
@@ -38,7 +38,7 @@ export interface StateType {
 export interface UserStoreType extends StoreModuleType<StateType> {
   state: StateType,
   mutations: {
-    changeVerufucated: Mutation<StateType>;
+    changeVerificated: Mutation<StateType>;
     changeToken: Mutation<StateType>;
     saveCurrentUser: Mutation<StateType>;
     saveMessage: Mutation<StateType>;
@@ -69,7 +69,7 @@ const StoreModel: UserStoreType = {
   name: 'user',
   state: initState,
   mutations: {
-    changeVerufucated(state, payload = false) {
+    changeVerificated(state, payload = false) {
       state.verificated = payload
     },
     changeToken(state, payload = null) {
@@ -79,6 +79,7 @@ const StoreModel: UserStoreType = {
       } else {
         removeToken()
       }
+      console.log(state.token)
     },
     saveCurrentUser(state, payload = {}) {
       state.currentUser = {
@@ -92,10 +93,14 @@ const StoreModel: UserStoreType = {
   },
   actions: {
     async fetchCurrent({ state, commit }) {
-      const userInfo = await getCurrent()
-      commit('saveCurrentUser', userInfo)
-      console.log(state.currentUser)
-      return userInfo
+      try {
+        const userInfo = await getCurrent()
+        commit('saveCurrentUser', userInfo)
+        commit('changeVerificated', true)
+        return userInfo
+      } catch (e) {
+        throw e
+      }
     },
     fetchMessage({ state, commit }) {
       return
@@ -107,12 +112,13 @@ const StoreModel: UserStoreType = {
     async login({ state, commit }, payload) {
       // return new Promise((resolve,reject)=>{
       //   login(payload).then(res=>{
-          
+
       //   })
 
       // })
 
       const res = await login(payload)
+      console.log(res)
       try {
         const { token } = res
         commit('changeToken', token)

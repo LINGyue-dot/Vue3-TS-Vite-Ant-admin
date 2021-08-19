@@ -1,3 +1,10 @@
+/*
+ * @Author: qianlong github:https://github.com/LINGyue-dot
+ * @Date: 2021-08-05 00:16:19
+ * @LastEditors: qianlong github:https://github.com/LINGyue-dot
+ * @LastEditTime: 2021-08-17 23:23:45
+ * @Description: 
+ */
 /**
  * @auth: qianlong
  * @github: LINGyue-dot
@@ -38,4 +45,13 @@ export const LoginRoute: AppRouterRecordRaw = {
   },
 };
 
-export const basicRoutes = [LoginRoute, RootRoute, ...asyncRoutes];
+export const DemoRoute: AppRouterRecordRaw = {
+  path: '/demo',
+  name: 'Demo',
+  component: () => import('views/demo/index.vue'),
+  meta: {
+    title: 'demo'
+  }
+}
+
+export const basicRoutes = [LoginRoute, RootRoute, DemoRoute];

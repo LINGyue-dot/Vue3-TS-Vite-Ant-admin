@@ -2,7 +2,7 @@
  * @Author: qianlong github:https://github.com/LINGyue-dot
  * @Date: 2021-08-16 10:59:51
  * @LastEditors: qianlong github:https://github.com/LINGyue-dot
- * @LastEditTime: 2021-08-16 17:22:16
+ * @LastEditTime: 2021-08-17 18:06:23
  * @Description: 路由权限拦截器
  */
 
@@ -33,9 +33,9 @@ export function createPermissionGuard(router: Router) {
       try {
         // 动态添加路由表
 
-        const { role } = await store.dispatch('/user/fetchCurrent')
+        const { role } = await store.dispatch('user/fetchCurrent')
 
-        const permissionRoutes = await store.dispatch('/permission/generateRoutes', role)
+        const permissionRoutes = await store.dispatch('permission/generateRoutes', role)
 
         permissionRoutes.forEach(item => {
           router.addRoute(item as unknown as RouteRecordRaw)
