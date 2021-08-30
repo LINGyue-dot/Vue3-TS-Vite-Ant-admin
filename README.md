@@ -364,6 +364,14 @@ export default StoreModel
 
 
 
+### websocket 
+
+前端直接使用 api 后端使用 ws
+
+ref https://juejin.cn/post/6844903544978407431#heading-19
+
+
+
 
 
 # Ref

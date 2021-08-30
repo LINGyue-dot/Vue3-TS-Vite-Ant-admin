@@ -21,7 +21,7 @@
 <script lang="ts">
 import { computed, defineComponent } from 'vue';
 // import { AppRouterRecordRaw } from 'router/types.ts';
-import { renderChildren } from 'utils/router';
+import { renderChildren } from 'utils/router/index.ts';
 
 export default defineComponent({
   name: 'SiderItem',

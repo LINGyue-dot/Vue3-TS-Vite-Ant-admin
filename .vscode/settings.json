@@ -1,4 +1,8 @@
 {
   "typescript.tsdk": "node_modules/typescript/lib",
-  "prettier.configPath": "D:\\private\\Vue3-TS-Vite-Ant-admin\\prettier.config.js"
+  "prettier.configPath": "D:\\Code\\selectproject\\Vue3\\vue3-ts-ant-admin\\prettier.config.js",
+  "i18n-ally.localesPaths": [
+    "src/locales"
+  ],
+  "editor.fontSize": 20
 }

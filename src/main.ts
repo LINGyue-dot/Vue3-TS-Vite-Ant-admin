@@ -2,8 +2,8 @@
  * @Author: qianlong github:https://github.com/LINGyue-dot
  * @Date: 2021-08-03 07:18:55
  * @LastEditors: qianlong github:https://github.com/LINGyue-dot
- * @LastEditTime: 2021-08-17 18:12:52
- * @Description: 
+ * @LastEditTime: 2021-08-25 20:40:47
+ * @Description:
  */
 import { createApp } from 'vue';
 import App from './App.vue';
@@ -15,12 +15,16 @@ import 'ant-design-vue/dist/antd.css';
 import { router, setupRouter } from './router';
 import { setupStore } from './store';
 import { setupRouterGuard } from './router/guard';
+import i18n from './locales';
 
 async function boostrap() {
   const app = createApp(App);
+
+  app.use(i18n);
+
   app.use(Antd);
 
-  await setupStore(app)
+  await setupStore(app);
 
   setupRouter(app);
 
