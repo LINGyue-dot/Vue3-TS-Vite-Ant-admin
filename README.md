@@ -27,29 +27,6 @@
 
 
 
-### Mock 数据
-
-主要是说明 yapi 的操作
-
-
-
-* 自动化测试对接接口
-* 
-
-
-
-#### 前置
-* 自己创建一个仓库在 http://yapi.smart-xwork.cn
-* 安装 cross-request 参考 https://juejin.cn/post/6844904057711099912
-
-#### 如何 mock 数据
-
-参考官网文档，大致效果如下说明成功
-
-![image-20210803191550956](http://120.27.242.14:9900/uploads/upload_79c25ee78678858ab8db1eeef22f495a.png)
-
-
-
 ## 待总需求
 
 
@@ -359,16 +336,6 @@ export default StoreModel
 * scrollbar 组件
 
 
-
-
-
-
-
-### websocket 
-
-前端直接使用 api 后端使用 ws
-
-ref https://juejin.cn/post/6844903544978407431#heading-19
 
 
 

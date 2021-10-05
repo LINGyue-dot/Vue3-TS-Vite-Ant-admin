@@ -2,8 +2,7 @@
  * @Author: qianlong github:https://github.com/LINGyue-dot
  * @Date: 2021-08-14 07:45:00
  * @LastEditors: qianlong github:https://github.com/LINGyue-dot
- * @LastEditTime: 2021-08-16 22:20:24
- * @Description: 
+ * @LastEditTime: 2021-10-04 20:28:05
  */
 
 import { Action, Mutation } from "vuex";
@@ -18,7 +17,8 @@ export enum Role {
   Sadmin // 超级管理员
 }
 
-export interface UserStateType {
+
+export interface UserInfoStateType {
   user_account: string | null;
   user_avatar: string | null;
   user_id: string | number; // 所有的主键
@@ -26,32 +26,32 @@ export interface UserStateType {
 }
 
 
-export interface StateType {
-  currentUser: UserStateType;
+export interface UserStateType {
+  currentUser: UserInfoStateType;
   message: number; // mq number
   verificated: boolean; // 本次登入是否已验证 token
   token: string | null;
 }
 
 
-export interface UserStoreType extends StoreModuleType<StateType> {
-  state: StateType,
+export interface UserStoreType extends StoreModuleType<UserStateType> {
+  state: UserStateType,
   mutations: {
-    changeVerufucated: Mutation<StateType>;
-    changeToken: Mutation<StateType>;
-    saveCurrentUser: Mutation<StateType>;
-    saveMessage: Mutation<StateType>;
+    changeVerificated: Mutation<UserStateType>;
+    changeToken: Mutation<UserStateType>;
+    saveCurrentUser: Mutation<UserStateType>;
+    saveMessage: Mutation<UserStateType>;
   },
   actions: {
-    fetchCurrent: Action<StateType, StateType>;
-    fetchMessage: Action<StateType, StateType>;
-    register: Action<StateType, StateType>;
-    login: Action<StateType, StateType>;
-    logout: Action<StateType, StateType>;
+    fetchCurrent: Action<UserStateType, UserStateType>;
+    fetchMessage: Action<UserStateType, UserStateType>;
+    register: Action<UserStateType, UserStateType>;
+    login: Action<UserStateType, UserStateType>;
+    logout: Action<UserStateType, UserStateType>;
   }
 }
 
-const initState: StateType = {
+const initState: UserStateType = {
   currentUser: {
     user_account: null,
     user_avatar: null,
@@ -68,7 +68,7 @@ const StoreModel: UserStoreType = {
   name: 'user',
   state: initState,
   mutations: {
-    changeVerufucated(state, payload = false) {
+    changeVerificated(state, payload = false) {
       state.verificated = payload
     },
     changeToken(state, payload = null) {
@@ -78,6 +78,7 @@ const StoreModel: UserStoreType = {
       } else {
         removeToken()
       }
+      console.log(state.token)
     },
     saveCurrentUser(state, payload = {}) {
       state.currentUser = {
@@ -91,23 +92,39 @@ const StoreModel: UserStoreType = {
   },
   actions: {
     async fetchCurrent({ state, commit }) {
-      const userInfo = await getCurrent()
-
-      commit('saveCurrentUser', userInfo)
-
-      console.log(state.currentUser)
-      return userInfo
-
+      try {
+        const userInfo = await getCurrent()
+        commit('saveCurrentUser', userInfo)
+        commit('changeVerificated', true)
+        return userInfo
+      } catch (e) {
+        throw e
+      }
     },
     fetchMessage({ state, commit }) {
       return
     },
     register({ state, commit }) {
       return
+
     },
     async login({ state, commit }, payload) {
-      console.log('---------')
-      return await login(payload)
+      // return new Promise((resolve,reject)=>{
+      //   login(payload).then(res=>{
+
+      //   })
+
+      // })
+
+      const res = await login(payload)
+      console.log(res)
+      try {
+        const { token } = res
+        commit('changeToken', token)
+      } catch (e) {
+      }
+      return res
+
     },
     /**
      * logout 

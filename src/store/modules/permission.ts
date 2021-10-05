@@ -2,19 +2,19 @@
  * @Author: qianlong github:https://github.com/LINGyue-dot
  * @Date: 2021-08-16 15:26:42
  * @LastEditors: qianlong github:https://github.com/LINGyue-dot
- * @LastEditTime: 2021-08-16 17:55:44
+ * @LastEditTime: 2021-10-04 21:59:06
  * @Description:
  */
 
 import { Action, Mutation } from 'vuex';
 import { asyncRoutes } from '../../router/routes';
-import { AppRouterMeta } from '../../router/types';
+import { AppRouterRecordRaw } from '../../router/types';
 import { filterAsyncRoutes } from '../../utils/auth';
 import { StoreModuleType } from '../types';
 import { Role } from './user';
 
 export interface PermissionStateType {
-  dynamicRoutes?: AppRouterMeta[]; // 为了 logoout 时候直接卸载
+  dynamicRoutes?: AppRouterRecordRaw[]; // 为了 logoout 时候直接卸载
 }
 
 export interface PermissionStoreType
@@ -24,6 +24,7 @@ export interface PermissionStoreType
     setDynamicRoutes: Mutation<PermissionStateType>;
   };
   actions: {
+    existRoute: Action<PermissionStateType, PermissionStateType>;
     generateRoutes: Action<PermissionStateType, PermissionStateType>;
   };
 }
@@ -40,6 +41,24 @@ const StoreModel: PermissionStoreType = {
     },
   },
   actions: {
+    /**
+     * 判断传入的 path 是否已经被动态添加到路由表中
+     * @param param0 
+     * @param name 
+     * @returns 
+     */
+    existRoute({ state }, name: string) {
+      let isExit = false
+      state.dynamicRoutes?.forEach(route => {
+        if (route.name === name) { isExit = true }
+      })
+      if (name === 'Analysis') {
+        isExit = true
+      }
+      return isExit
+    },
+
+
     /**
      * 生成动态路由表
      * @param param0

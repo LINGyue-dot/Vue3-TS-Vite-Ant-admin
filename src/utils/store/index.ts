@@ -2,7 +2,7 @@
  * @Author: qianlong github:https://github.com/LINGyue-dot
  * @Date: 2021-08-07 12:22:41
  * @LastEditors: qianlong github:https://github.com/LINGyue-dot
- * @LastEditTime: 2021-08-16 18:19:52
+ * @LastEditTime: 2021-10-04 15:41:18
  * @Description: 
  */
 import { ModuleTree } from "vuex";
@@ -38,6 +38,8 @@ export function importAllStore<S>(): ModuleTree<S> {
       throw new Error('/src/utils/store auto import store module error ')
     }
   })
+
+  console.log(modules)
 
 
   return modules

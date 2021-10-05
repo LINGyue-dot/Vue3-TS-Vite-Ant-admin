@@ -48,14 +48,14 @@ export default defineComponent({
         await store.dispatch('user/login', formData);
         router.replace('/dashboard/analysis')
       } catch (e) {
-        console.log('--------')
+        console.log(e)
       }
     };
 
     return {
       formData,
       formRules,
-      register,
+      register, 
       login,
     };
   },

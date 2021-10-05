@@ -2,7 +2,7 @@
  * @Author: qianlong github:https://github.com/LINGyue-dot
  * @Date: 2021-08-15 14:55:48
  * @LastEditors: qianlong github:https://github.com/LINGyue-dot
- * @LastEditTime: 2021-08-17 13:28:56
+ * @LastEditTime: 2021-10-04 16:51:48
  * @Description: Axios 进行 ts 对应配置
  */
 
@@ -11,6 +11,7 @@ import { deepCopy, isFuntion } from "../../js";
 import { BaseResponse, ContentTypeEnum, CreateAxiosOptions, RequestOptions } from "./types";
 
 import qs from 'qs'
+import { getToken } from "../../auth";
 
 
 export class VAxios {
@@ -112,6 +113,12 @@ export class VAxios {
 
     conf.requestOptions = opt
 
+    if (opt.withToken) {
+      conf.headers = {
+        'X-Token': getToken() // !!! ToDo 此处用 vuex 可能会更好,但是使用 vuex 时候需要 hook 此处又是类
+      }
+    }
+
     conf = this.handleUrlData(conf)
 
     const transform = this.getTransform()
@@ -121,7 +128,7 @@ export class VAxios {
     return new Promise((resolve, reject) => {
       this.axiosInstance.request<any, AxiosResponse<BaseResponse>>(conf)
         .then((res: AxiosResponse<BaseResponse>) => {
-          if (transformHook && isFuntion(transformHook)) {
+          if (transformHook && isFuntion(transformHook) && !requestOptions?.returnNativeResponse) {
             const ret = transformHook(res, opt)
             resolve(ret)
           } else {

@@ -2,8 +2,9 @@
  * @Author: qianlong github:https://github.com/LINGyue-dot
  * @Date: 2021-08-14 07:45:00
  * @LastEditors: qianlong github:https://github.com/LINGyue-dot
- * @LastEditTime: 2021-08-17 17:57:12
- * @Description: 本文件与 user.ts 完全一致，只是用于解决 bug
+ * @LastEditTime: 2021-10-04 21:28:46
+ * @Description: 本文件与 user.ts 完全一致，只是用于解决一个奇怪 bug 
+ * 此文件是真实引入到 store 中文件 user.ts 并未引入
  */
 
 import { Action, Mutation } from "vuex";
@@ -79,7 +80,6 @@ const StoreModel: UserStoreType = {
       } else {
         removeToken()
       }
-      console.log(state.token)
     },
     saveCurrentUser(state, payload = {}) {
       state.currentUser = {
@@ -107,25 +107,17 @@ const StoreModel: UserStoreType = {
     },
     register({ state, commit }) {
       return
-
     },
     async login({ state, commit }, payload) {
-      // return new Promise((resolve,reject)=>{
-      //   login(payload).then(res=>{
-
-      //   })
-
-      // })
-
-      const res = await login(payload)
-      console.log(res)
+      let res
       try {
+        res = await login(payload)
         const { token } = res
         commit('changeToken', token)
       } catch (e) {
+        throw e
       }
       return res
-
     },
     /**
      * logout 

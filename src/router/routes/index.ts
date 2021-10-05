@@ -2,7 +2,7 @@
  * @Author: qianlong github:https://github.com/LINGyue-dot
  * @Date: 2021-08-05 00:16:19
  * @LastEditors: qianlong github:https://github.com/LINGyue-dot
- * @LastEditTime: 2021-08-17 23:23:45
+ * @LastEditTime: 2021-10-05 10:48:30
  * @Description: 
  */
 /**
@@ -20,6 +20,7 @@ const routeModuleList: AppRouterRecordRaw[] = [];
 
 Object.keys(modules).forEach(key => {
   const mod = modules[key].default || {};
+  console.log(mod)
   const modList = Array.isArray(mod) ? [...mod] : [mod];
   routeModuleList.push(...modList);
 });
@@ -39,7 +40,7 @@ export const RootRoute: AppRouterRecordRaw = {
 export const LoginRoute: AppRouterRecordRaw = {
   path: '/login',
   name: 'Login',
-  component: () => import('views/login/index.vue'),
+  component: () => import('../../views/login/index.vue'),
   meta: {
     title: '登入',
   },
@@ -48,7 +49,7 @@ export const LoginRoute: AppRouterRecordRaw = {
 export const DemoRoute: AppRouterRecordRaw = {
   path: '/demo',
   name: 'Demo',
-  component: () => import('views/demo/index.vue'),
+  component: () => import('../../views/demo/index.vue'),
   meta: {
     title: 'demo'
   }

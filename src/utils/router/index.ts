@@ -2,11 +2,15 @@
  * @Author: qianlong github:https://github.com/LINGyue-dot
  * @Date: 2021-08-06 09:57:48
  * @LastEditors: qianlong github:https://github.com/LINGyue-dot
- * @LastEditTime: 2021-08-17 17:37:26
+ * @LastEditTime: 2021-10-05 09:45:43
  * @Description: 
  */
+import { RouteRecordRaw } from "vue-router"
+import { router } from "../../router"
 import { asyncRoutes } from "../../router/routes"
 import { AppRouterRecordRaw } from "../../router/types"
+import { store } from "../../store"
+import { Role } from "../../store/modules/user"
 
 
 /**
@@ -14,7 +18,7 @@ import { AppRouterRecordRaw } from "../../router/types"
  * 此刻暂时处理
  */
 export const getPermissionRoutes = () => {
-  return asyncRoutes 
+  return asyncRoutes
 }
 
 /**
@@ -48,4 +52,14 @@ export const renderChildren = (item: AppRouterRecordRaw) => {
   if (isSingleMenuItem(item))
     return false
   return true
+}
+
+
+export const addAsyncRoutes = async () => {
+  const { role = Role.Gadmin } = await store.dispatch('user/fetchCurrent')
+  const permissionRoutes = await store.dispatch('permission/generateRoutes', role)
+
+  permissionRoutes.forEach(item => {
+    router.addRoute(item as unknown as RouteRecordRaw)
+  })
 }

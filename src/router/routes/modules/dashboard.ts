@@ -2,7 +2,7 @@
  * @Author: qianlong github:https://github.com/LINGyue-dot
  * @Date: 2021-08-05 02:48:46
  * @LastEditors: qianlong github:https://github.com/LINGyue-dot
- * @LastEditTime: 2021-08-16 15:24:06
+ * @LastEditTime: 2021-10-05 10:49:22
  * @Description: 
  */
 import { Role } from '../../../store/modules/user';
@@ -22,7 +22,7 @@ const dashboard: AppRouterRecordRaw = {
     {
       path: 'analysis',
       name: 'Analysis',
-      component: () => import('views/dashboard/analysis/index.vue'),
+      component: () => import('../../../views/dashboard/analysis/index.vue'),
       meta: {
         title: '分析台',
         icon: 'sad',
@@ -32,12 +32,11 @@ const dashboard: AppRouterRecordRaw = {
     {
       path: 'workbench',
       name: 'Workbench',
-      component: () => import('views/dashboard/workbench/index.vue'),
+      component: () => import('../../../views/dashboard/workbench/index.vue'),
       meta: {
         title: '工作台',
         icon: 'sad',
         roles: [Role.Tourist, Role.Gadmin, Role.Sadmin]
-
       }
     }
   ],

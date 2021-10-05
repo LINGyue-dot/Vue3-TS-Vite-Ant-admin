@@ -2,13 +2,15 @@
  * @Author: qianlong github:https://github.com/LINGyue-dot
  * @Date: 2021-08-03 22:13:35
  * @LastEditors: qianlong github:https://github.com/LINGyue-dot
- * @LastEditTime: 2021-08-16 17:00:14
+ * @LastEditTime: 2021-10-05 10:35:55
  * @Description: 所有路由文件定义入口
  */
 
 import { createRouter, createWebHashHistory, RouteRecordRaw } from "vue-router";
 import { basicRoutes, asyncRoutes } from "./routes";
 import type { App } from "vue";
+import { AppRouterMeta } from "./types";
+
 
 export const router = createRouter({
   history: createWebHashHistory('/'),
@@ -16,8 +18,18 @@ export const router = createRouter({
   scrollBehavior: () => ({ left: 0, top: 0 }),
 });
 
-export function addAsyncRouter() {
-  asyncRoutes.forEach(route => {
+
+// function tempAdd() {
+//   console.log(asyncRoutes)
+//   asyncRoutes.forEach(route => {
+//     router.addRoute(route as unknown as RouteRecordRaw)
+//   })
+// }
+// tempAdd()
+
+
+export function addAsyncRouter(filterRoutes: AppRouterMeta[]) {
+  filterRoutes.forEach(route => {
     router.addRoute(route as unknown as RouteRecordRaw);
   });
 }

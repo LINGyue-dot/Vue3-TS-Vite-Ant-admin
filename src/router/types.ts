@@ -2,7 +2,7 @@
  * @Author: qianlong github:https://github.com/LINGyue-dot
  * @Date: 2021-08-04 23:41:45
  * @LastEditors: qianlong github:https://github.com/LINGyue-dot
- * @LastEditTime: 2021-08-16 15:17:39
+ * @LastEditTime: 2021-10-04 20:21:46
  * @Description: 
  */
 import { RouteMeta, RouteRecordRaw } from 'vue-router';
@@ -18,6 +18,8 @@ export interface AppRouterMeta {
   // 标题在 sider 中显示
   title: string;
 }
+
+
 
 export interface AppRouterRecordRaw
   extends Omit<RouteRecordRaw, 'meta' | 'children'> {

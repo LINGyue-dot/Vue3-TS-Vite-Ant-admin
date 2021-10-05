@@ -1,11 +1,12 @@
 <template>
-  <div>hello</div>
+  <div>test</div>
 </template>
-<script lang="ts">
+<script lang='ts'>
 import { defineComponent } from 'vue'
-
 export default defineComponent({
-  name:'Workbench'
+
 })
 </script>
-<style scoped></style>
+<style scoped>
+
+</style>

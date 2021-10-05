@@ -2,7 +2,7 @@
  * @Author: qianlong github:https://github.com/LINGyue-dot
  * @Date: 2021-08-06 10:16:45
  * @LastEditors: qianlong github:https://github.com/LINGyue-dot
- * @LastEditTime: 2021-08-17 18:11:34
+ * @LastEditTime: 2021-10-05 10:49:07
  * @Description: 
  */
 import { Role } from "../../../store/modules/user";
@@ -24,7 +24,7 @@ const party: AppRouterRecordRaw = {
     {
       path: 'index',
       name: 'PartyPage',
-      component: () => import('views/party/index.vue'),
+      component: () => import('../../../views/party/index.vue'),
       meta: {
         title: '派对',
         roles: [Role.Tourist, Role.Gadmin, Role.Sadmin]

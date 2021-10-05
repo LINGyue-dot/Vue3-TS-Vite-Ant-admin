@@ -9,6 +9,7 @@ import { http } from '../../../utils/http/axios';
 import { getApi } from '../../../utils/settings/env';
 
 export default defineComponent({
+  name:'Analysis',
   setup() {
     const store = useStore<{ global: GlobalStateType }>();
 
