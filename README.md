@@ -341,6 +341,16 @@ export default StoreModel
 
 
 
+
+
+## 期间所遇的 bug
+
+addRoute 之后的 `router.getRoutes()` 得到的 components 为 `undefined`
+
+![image-20211005105734379](http://120.27.242.14:9900/uploads/upload_9250b076afcda1111e3fb76093f6ece3.png)
+
+
+
 # Ref
 
 
