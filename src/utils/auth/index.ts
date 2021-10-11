@@ -2,13 +2,13 @@
  * @Author: qianlong github:https://github.com/LINGyue-dot
  * @Date: 2021-08-15 15:53:42
  * @LastEditors: qianlong github:https://github.com/LINGyue-dot
- * @LastEditTime: 2021-08-16 17:58:59
+ * @LastEditTime: 2021-10-11 11:10:13
  * @Description: 权限认证工具函数
  */
 
 import { AppRouterRecordRaw } from "../../router/types"
 import { Role } from "../../store/modules/user"
-import { deepCopy } from "../js"
+
 
 export const TOKEN_NAME = 'X-Token'
 
@@ -47,25 +47,6 @@ export function hasPermission(role: Role, route: AppRouterRecordRaw) {
 
 }
 
-/**
- * 通过 role 过滤出现在的满足条件的异步路由
- * @param role 
- * @param routes 
- */
-export function filterAsyncRoutes(role: Role, routes: AppRouterRecordRaw[]): AppRouterRecordRaw[] {
 
-  const res: AppRouterRecordRaw[] = []
-  routes.forEach(route => {
-    const temp = deepCopy(route)
-
-    if (hasPermission(role, temp)) {
-      if (temp.children) {
-        temp.children = filterAsyncRoutes(role, temp.children)
-      }
-    }
-    res.push(temp)
-  })
-  return res
-}
 
 

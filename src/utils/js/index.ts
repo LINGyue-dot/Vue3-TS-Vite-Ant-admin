@@ -2,7 +2,7 @@
  * @Author: qianlong github:https://github.com/LINGyue-dot
  * @Date: 2021-08-15 20:35:15
  * @LastEditors: qianlong github:https://github.com/LINGyue-dot
- * @LastEditTime: 2021-08-15 21:24:53
+ * @LastEditTime: 2021-10-11 11:17:31
  * @Description: js 的辅助函数
  */
 
@@ -27,7 +27,9 @@ export function isFuntion(fn) {
 
 /**
  * temp 深拷贝
- * !!!!! to do
+ * !!!!! to do 
+ * too much problems
+ * 1. 无法拷贝函数
  * @param target 
  * @returns 
  */

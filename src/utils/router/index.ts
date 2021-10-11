@@ -2,7 +2,7 @@
  * @Author: qianlong github:https://github.com/LINGyue-dot
  * @Date: 2021-08-06 09:57:48
  * @LastEditors: qianlong github:https://github.com/LINGyue-dot
- * @LastEditTime: 2021-10-05 09:45:43
+ * @LastEditTime: 2021-10-11 11:16:34
  * @Description: 
  */
 import { RouteRecordRaw } from "vue-router"
@@ -11,7 +11,9 @@ import { asyncRoutes } from "../../router/routes"
 import { AppRouterRecordRaw } from "../../router/types"
 import { store } from "../../store"
 import { Role } from "../../store/modules/user"
-
+import { cloneDeep } from 'lodash'
+import { hasPermission } from "../auth"
+import { deepCopy } from "../js"
 
 /**
  * 获取用户的权限路由
@@ -58,8 +60,30 @@ export const renderChildren = (item: AppRouterRecordRaw) => {
 export const addAsyncRoutes = async () => {
   const { role = Role.Gadmin } = await store.dispatch('user/fetchCurrent')
   const permissionRoutes = await store.dispatch('permission/generateRoutes', role)
-
   permissionRoutes.forEach(item => {
     router.addRoute(item as unknown as RouteRecordRaw)
   })
+}
+
+/**
+ * 通过 role 过滤出现在的满足条件的异步路由
+ * @param role 
+ * @param routes 
+ */
+export function filterAsyncRoutes(role: Role, routes: AppRouterRecordRaw[]): AppRouterRecordRaw[] {
+  const res: AppRouterRecordRaw[] = []
+  routes.forEach(route => {
+    console.log(route, deepCopy(route))
+    // !!!! 
+    const temp = cloneDeep(route)
+    store.commit('permission/addDynamicRoute', temp)
+    if (hasPermission(role, temp)) {
+      if (temp.children) {
+        temp.children = filterAsyncRoutes(role, temp.children)
+      }
+    }
+    //
+    res.push(temp)
+  })
+  return res
 }

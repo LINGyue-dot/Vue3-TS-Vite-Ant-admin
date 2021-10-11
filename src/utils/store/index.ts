@@ -2,7 +2,7 @@
  * @Author: qianlong github:https://github.com/LINGyue-dot
  * @Date: 2021-08-07 12:22:41
  * @LastEditors: qianlong github:https://github.com/LINGyue-dot
- * @LastEditTime: 2021-10-04 15:41:18
+ * @LastEditTime: 2021-10-11 10:43:38
  * @Description: 
  */
 import { ModuleTree } from "vuex";
@@ -16,7 +16,6 @@ export function importAllStore<S>(): ModuleTree<S> {
 
   // 导入 /store/modules/*.ts 下的全部 store
   const outModules = import.meta.globEager('../../store/modules/*.ts')
-  console.log(outModules)
 
   Object.keys(outModules).forEach(key => {
     if (key === '../../store/modules/user.ts') return
@@ -38,9 +37,6 @@ export function importAllStore<S>(): ModuleTree<S> {
       throw new Error('/src/utils/store auto import store module error ')
     }
   })
-
-  console.log(modules)
-
 
   return modules
 }

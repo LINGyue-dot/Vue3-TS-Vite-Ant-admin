@@ -7,7 +7,8 @@
  */
 
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
-import { deepCopy, isFuntion } from "../../js";
+import { isFuntion } from "../../js";
+import { cloneDeep } from 'lodash'
 import { BaseResponse, ContentTypeEnum, CreateAxiosOptions, RequestOptions } from "./types";
 
 import qs from 'qs'
@@ -105,7 +106,7 @@ export class VAxios {
    */
   request<T = any>(config: AxiosRequestConfig, options?: RequestOptions): Promise<T> {
 
-    let conf: CreateAxiosOptions = deepCopy(config)
+    let conf: CreateAxiosOptions = cloneDeep(config)
 
     const { requestOptions } = this.options
     // 覆盖初始化的请求 option
