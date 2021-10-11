@@ -345,9 +345,33 @@ export default StoreModel
 
 ## 期间所遇的 bug
 
+
+
+### addRoute
+
+#### 问题
+
 addRoute 之后的 `router.getRoutes()` 得到的 components 为 `undefined`
 
 ![image-20211005105734379](http://120.27.242.14:9900/uploads/upload_9250b076afcda1111e3fb76093f6ece3.png)
+
+#### 解决过程
+
+原先先将问题定位到 `vue-router-next` 中，所以将 `vue-router-next` 源码结合博客基本看完，在看后发现 `addRoute` 并不会去对 `default`  的 `component` 做操作，就将问题再定位到自己的逻辑中
+
+#### 解决
+
+由于在过滤权限路由时候需要深拷贝再进行递归子组件生成权限路由，在深拷贝时候天真的使用了如下 es6 的拷贝，但该拷贝方案无法拷贝函数，而组件引入方式都是以懒加载函数导入，所以导致所有权限路由的组件都是 `undefined`
+
+```ts
+export function deepCopy<T = any>(target: T): T {
+  return JSON.parse(JSON.stringify(target));
+}
+```
+
+
+
+
 
 
 
