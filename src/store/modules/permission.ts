@@ -2,7 +2,7 @@
  * @Author: qianlong github:https://github.com/LINGyue-dot
  * @Date: 2021-08-16 15:26:42
  * @LastEditors: qianlong github:https://github.com/LINGyue-dot
- * @LastEditTime: 2021-10-11 11:13:34
+ * @LastEditTime: 2021-10-12 09:52:32
  * @Description:
  */
 
@@ -54,7 +54,6 @@ const StoreModel: PermissionStoreType = {
      */
     existRoute({ state }, name: string) {
       let isExit = false
-      console.log(state.dynamicRoutes)
       state.dynamicRoutes?.forEach(route => {
         if (route.name === name) { isExit = true }
       })

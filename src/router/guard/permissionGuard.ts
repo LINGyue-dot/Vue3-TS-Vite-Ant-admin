@@ -2,7 +2,7 @@
  * @Author: qianlong github:https://github.com/LINGyue-dot
  * @Date: 2021-08-16 10:59:51
  * @LastEditors: qianlong github:https://github.com/LINGyue-dot
- * @LastEditTime: 2021-10-11 10:45:53
+ * @LastEditTime: 2021-10-12 09:53:23
  * @Description: 路由权限拦截器
  */
 
@@ -17,11 +17,9 @@ const whiteList = ['/login', '/demo']
 export function createPermissionGuard(router: Router) {
 
   router.beforeEach(async (to, from, next) => {
-    console.log(from.path, to.path)
     // 如果已验证或者是白名单路由表
     // !!! todo 此处应该对路由的 meta 添加是否验证更合理
     // 注意此处的 store 是需要 createStore 时候定义类型
-    console.log(await store.dispatch("permission/existRoute", to.name))
     if (whiteList.includes(to.path) || await store.dispatch("permission/existRoute", to.name)) {
       await store.dispatch("permission/existRoute", to.name)
       next()

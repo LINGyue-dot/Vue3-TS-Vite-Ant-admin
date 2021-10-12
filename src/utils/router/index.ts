@@ -2,7 +2,7 @@
  * @Author: qianlong github:https://github.com/LINGyue-dot
  * @Date: 2021-08-06 09:57:48
  * @LastEditors: qianlong github:https://github.com/LINGyue-dot
- * @LastEditTime: 2021-10-11 11:16:34
+ * @LastEditTime: 2021-10-12 09:52:51
  * @Description: 
  */
 import { RouteRecordRaw } from "vue-router"
@@ -73,7 +73,6 @@ export const addAsyncRoutes = async () => {
 export function filterAsyncRoutes(role: Role, routes: AppRouterRecordRaw[]): AppRouterRecordRaw[] {
   const res: AppRouterRecordRaw[] = []
   routes.forEach(route => {
-    console.log(route, deepCopy(route))
     // !!!! 
     const temp = cloneDeep(route)
     store.commit('permission/addDynamicRoute', temp)

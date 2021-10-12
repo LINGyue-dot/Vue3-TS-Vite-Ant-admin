@@ -2,7 +2,7 @@
  * @Author: qianlong github:https://github.com/LINGyue-dot
  * @Date: 2021-08-14 07:45:00
  * @LastEditors: qianlong github:https://github.com/LINGyue-dot
- * @LastEditTime: 2021-10-04 20:28:05
+ * @LastEditTime: 2021-10-12 10:08:25
  */
 
 import { Action, Mutation } from "vuex";
@@ -65,7 +65,7 @@ const initState: UserStateType = {
 
 const StoreModel: UserStoreType = {
   namespaced: true,
-  name: 'user',
+  name: 'user_copy',
   state: initState,
   mutations: {
     changeVerificated(state, payload = false) {

@@ -41,7 +41,14 @@ export default defineComponent({
       user_password: [{ required: true, trigger: 'change' }],
     };
 
-    const register = () => {};
+    const register = async () => {}
+      try{
+        
+      }catch(e){
+
+      }
+
+    ;
 
     const login = async () => {
       try {

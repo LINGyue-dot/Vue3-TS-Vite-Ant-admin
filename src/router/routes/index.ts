@@ -2,7 +2,7 @@
  * @Author: qianlong github:https://github.com/LINGyue-dot
  * @Date: 2021-08-05 00:16:19
  * @LastEditors: qianlong github:https://github.com/LINGyue-dot
- * @LastEditTime: 2021-10-05 10:48:30
+ * @LastEditTime: 2021-10-12 09:53:08
  * @Description: 
  */
 /**
@@ -20,7 +20,6 @@ const routeModuleList: AppRouterRecordRaw[] = [];
 
 Object.keys(modules).forEach(key => {
   const mod = modules[key].default || {};
-  console.log(mod)
   const modList = Array.isArray(mod) ? [...mod] : [mod];
   routeModuleList.push(...modList);
 });
